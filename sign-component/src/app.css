@@ -1,0 +1,10 @@
+.App{
+  min-width: 900px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  font-size: 14px;
+  text-align: center;
+  box-sizing: border-box;
+}
