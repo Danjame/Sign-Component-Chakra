@@ -2,8 +2,11 @@ import React from 'react'
 import { InputGroup, Input, InputLeftElement, Checkbox, Link, Button, Text, Stack, Icon } from '@chakra-ui/react'
 import { AiOutlineWeibo, AiFillWechat, AiOutlineQq } from "react-icons/ai"
 import { FaUserAlt, FaLock } from 'react-icons/fa'
+import { observer } from 'mobx-react-lite'
+import { useSignStore } from '../stores/SignStore'
 
 function SignIn() {
+  const signStore = useSignStore()
   return <form>
     <Stack mb="30px" color="#b5b5b5">
       <InputGroup>
@@ -18,7 +21,7 @@ function SignIn() {
         <Checkbox defaultIsChecked>记住我</Checkbox>
         <Link>登录遇到问题？</Link>
       </Stack>
-      <Button colorScheme="blue">登录</Button>
+      <Button colorScheme="blue" onClick={signStore.signIn}>登录</Button>
     </Stack>
     <Stack position="relative" color="#b5b5b5">
       <Text
@@ -51,4 +54,4 @@ function SignIn() {
   </form>
 }
 
-export default SignIn
+export default observer(SignIn)
