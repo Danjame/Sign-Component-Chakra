@@ -3,38 +3,32 @@ import { createContext, useContext } from 'react'
 import axios from 'axios'
 
 class SignStore {
-  user = 'user'
-  token = 'token'
+  user = null
   constructor () {
     makeAutoObservable(this, {
       user: observable,
-      token: observable,
       signIn: action.bound,
       signUp: action.bound
     })
   }
+  // 登录
   async signIn (user) {
-    console.log('signIn', this.user)
-    let res = await axios.post("https://conduit.productionready.io/api/users/login", {
+    let result = await axios.post("https://conduit.productionready.io/api/users/login", {
       user
-    }).then(response => response.data)
-    // {"user":{    
-    //   "email": "jake@jake.jake",   
-    //   "password": "jakejake"
-    //     }
-    // }
+    }).then(response => {
+      this.user = response.data.user
+      return response
+    })
+      .catch(err => err.response)
+      return result
   }
+  // 注册
   async signUp (user) {
-    console.log('signUp', this.token)
-    let res = await axios.post("https://conduit.productionready.io/api/users", {
+    const result = await axios.post("https://conduit.productionready.io/api/users", {
       user
-    }).then(response => response.data)
-  //   {"user":{   
-  //     "username": "Jacob",
-  //     "email": "jake@jake.jake",
-  //     "password": "jakejake"users
-  //      }
-  // }
+    }).then(response => response
+    ).catch(err => err.response)
+    return result
   }
 }
 

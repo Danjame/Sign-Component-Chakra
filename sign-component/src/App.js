@@ -7,9 +7,11 @@ const signStore =  new SignStore()
 
 function App() {
   return (
-    <SignStoreProvider store= {signStore}>
-      <Form />
-    </SignStoreProvider>
+    <div className="App">
+      <SignStoreProvider store= {signStore}>
+        <Form />
+      </SignStoreProvider>
+    </div>
   );
 }
 
